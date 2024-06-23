@@ -2,12 +2,16 @@ import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 
 const Player = ({ station }) => {
-  console.log(station);
 
   return (
     <AudioPlayer
-      src={station.url}
+      src={station.urlResolved}
+      showJumpControls={false}
+      layout="stacked"
+      customProgressBarSection={[]}
+      customControlsSection={['MAIN_CONTROLS', 'VOLUME_CONTROLS']}
       onPlay={(e) => console.log("playing song")}
+      autoPlayAfterSrcChange={false}
     />
   );
 };
