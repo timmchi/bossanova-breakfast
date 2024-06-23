@@ -29,13 +29,13 @@ const StationList = () => {
   return (
     <div>
       <div className="language-list">
-        <ul>
+        
           {languages.map((language) => (
-            <li key={language}>
-              <button onClick={() => setLanguage(language)}>{language}</button>
-            </li>
+            
+              <button key={language} onClick={() => setLanguage(language)}>{language}</button>
+        
           ))}
-        </ul>
+        
       </div>
       <div className="station-list">
         {stations &&
@@ -43,7 +43,7 @@ const StationList = () => {
             <div className="station-player" key={station?.stationuuid}>
                 <div className="station-info">
                 <img className="station-logo" alt="station logo" src={station.favicon} width="60" height="60" />
-                <p>{station?.name}</p>
+                <p className="station-name">{station?.name}</p>
                 </div>
               <Player station={station} />
             </div>

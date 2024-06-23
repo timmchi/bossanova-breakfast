@@ -19,6 +19,21 @@ body {
     font-size: 1.5rem;
 }
 
+.language-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.language-list button {
+    font-size: 1rem;
+    padding: 0.5em;
+    margin-left: 1em;
+    background-color: #FFA62F;
+    color: #FFE8C8;
+    border-radius: 5px;
+}
+
 .station-player {
     padding-left: 2em;
     padding-right: 2em;
@@ -42,6 +57,11 @@ body {
 
 .station-logo {
     border-radius: 50%;
+}
+
+.station-name {
+    color: #593700;
+    font-size: 1.3rem;
 }
 
 .rhap_container {
