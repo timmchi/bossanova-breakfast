@@ -41,8 +41,10 @@ const StationList = () => {
         {stations &&
           stations.map((station) => (
             <div className="station-player" key={station?.stationuuid}>
-                <img className="station-logo" alt="station logo" src={station.favicon} width="50" height="50" />
+                <div className="station-info">
+                <img className="station-logo" alt="station logo" src={station.favicon} width="60" height="60" />
                 <p>{station?.name}</p>
+                </div>
               <Player station={station} />
             </div>
           ))}

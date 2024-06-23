@@ -18,3 +18,52 @@ body {
 .slogan {
     font-size: 1.5rem;
 }
+
+.station-player {
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 1em;
+    border-radius: 10px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #FFE8C8;
+    margin: 1em;
+    box-shadow: 2px 2px 5px 2px rgba(172,215,147,0.75);
+    -webkit-box-shadow: 2px 2px 5px 2px rgba(172,215,147,0.75);
+    -moz-box-shadow: 2px 2px 5px 2px rgba(172,215,147,0.75);
+}
+
+.station-info {
+    display: flex;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    justify-content: space-between;
+}
+
+.station-logo {
+    border-radius: 50%;
+}
+
+.rhap_container {
+    background-color: #FFA62F;
+    display: flex;
+    justify-items: center;
+    padding: 0.25em 0.75em;
+    border-radius: 10px;
+}
+
+.rhap_stacked .rhap_controls-section {
+    margin-top: 0 !important;
+}
+
+.rhap_stacked .rhap_main-controls-button {
+    color: #FFE8C8;
+}
+
+.rhap_volume-button {
+    color: #FFE8C8;
+}
+
+.rhap_volume-indicator {
+    background-color: #ACD793;
+}
