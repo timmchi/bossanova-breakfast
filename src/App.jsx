@@ -1,4 +1,4 @@
-
+import MapElement from "./components/Map";
 import StationList from "./components/StationList";
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
       <h3 className="slogan"><i>Choose your soundtrack, then choose your breakfast</i></h3>
       </div>
       <StationList />
+      <MapElement/>
     </div>
   );
 }
