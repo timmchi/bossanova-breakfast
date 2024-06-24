@@ -2,21 +2,18 @@ import { useState } from "react";
 import { 
     APIProvider,
     Map,
-    AdvancedMarker,
-    Pin,
-    InfoWindow
+    useMapsLibrary
 } from '@vis.gl/react-google-maps'
 
-const API_KEY = 
+const API_KEY = 'AIzaSyBkRujkfnEY9WcJtWbG46I275XCzzSzEQ4'
 
-const MapElement = () => {
-    const position = { lat: 53.54, lng: 10 }
+const MapElement = ({ location }) => {
 
+    // this rerenders on every key press atm - not good, add debounce
     return (
         <APIProvider apiKey={API_KEY}>
             <div style={{ height: "50vh" }}>
-                <Map defaultZoom={9} defaultCenter={position}>
-
+                <Map defaultZoom={10} center={location} disableDefaultUI={true}>
                 </Map>
             </div>
         </APIProvider>
