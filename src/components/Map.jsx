@@ -1,22 +1,17 @@
-import { useState } from "react";
 import { 
-    APIProvider,
-    Map,
-    useMapsLibrary
+    Map
 } from '@vis.gl/react-google-maps'
+import BreakfastMarkers from "./BreakfastMarkers";
 
-const API_KEY = 'AIzaSyBkRujkfnEY9WcJtWbG46I275XCzzSzEQ4'
-
-const MapElement = ({ location }) => {
+const MapElement = ({ location, breakfastResults }) => {
 
     // this rerenders on every key press atm - not good, add debounce
     return (
-        <APIProvider apiKey={API_KEY}>
             <div style={{ height: "50vh" }}>
-                <Map defaultZoom={10} center={location} disableDefaultUI={true}>
+                <Map defaultZoom={10} center={location} disableDefaultUI={true} >
+                    <BreakfastMarkers places={breakfastResults} />
                 </Map>
             </div>
-        </APIProvider>
     )
 }
 
