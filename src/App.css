@@ -106,3 +106,14 @@ body {
     padding: 0.6em 0.5em;
     border-radius: 5px;
 }
+
+.breakfast-card {
+    border-width: 5px;
+    border-radius: 20px;
+    border-color: white;
+    border-style: solid;
+    padding: 1em;
+    margin: 1em;
+    display: flex;
+    justify-content: space-between;
+}

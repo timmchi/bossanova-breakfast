@@ -7,9 +7,10 @@ import {
 import { getGeocode, getLatLng } from 'use-places-autocomplete'
 import { useLoadScript, useJsApiLoader } from '@react-google-maps/api'
 import MapElement from "./Map";
+import BreakfastOptionCard from "./BreakfastOptionCard";
 import LocationSearch from "./LocationSearch";
 
-const API_KEY = 'AIzaSyBkRujkfnEY9WcJtWbG46I275XCzzSzEQ4'
+const API_KEY = 
 
 const usePlacesService = () => {
     const map = useMap();
@@ -31,7 +32,7 @@ const BreakfastSearch = () => {
     const [locationQuery, setLocationQuery] = useState('')
     const [breakfastResults, setBreakfastResults] = useState([])
     const placesService = usePlacesService()
-
+    const map = useMap();
     const [ libraries ] = useState(['places']);
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: API_KEY,
@@ -67,13 +68,15 @@ const BreakfastSearch = () => {
         console.log(location)
         setLocation({ lat, lng })
         setSearchPlaces(true)
+        map.setCenter({ lat, lng })
         console.log(location)
     }
 
     return (
         <div className="breakfast">
-                <MapElement location={location} breakfastResults={breakfastResults} />
+                <MapElement breakfastResults={breakfastResults} />
                 <LocationSearch searchValue={locationQuery} onSearch={setLocationQuery} handleSubmit={handleSearch}/>
+                {breakfastResults.slice(0, 5).map(place => <><BreakfastOptionCard place={place} key={place.name} /></>)}
         </div>
     )
 }
