@@ -37,7 +37,7 @@ const StationList = () => {
           ))}
         
       </div>
-      <div className="station-list">
+      <div className="station-list-container">
         {stations &&
           stations.map((station) => (
             <div className="station-player" key={station?.id}>

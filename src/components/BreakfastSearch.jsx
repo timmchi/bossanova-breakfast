@@ -9,6 +9,7 @@ import { useLoadScript, useJsApiLoader } from '@react-google-maps/api'
 import MapElement from "./Map";
 import BreakfastOptionCard from "./BreakfastOptionCard";
 import LocationSearch from "./LocationSearch";
+import { cafes } from '../data/mockCafes'
 
 const API_KEY = 
 
@@ -30,7 +31,8 @@ const BreakfastSearch = () => {
     const [location, setLocation] = useState({ lat: 53.54, lng: 10 })
     const [searchPlaces, setSearchPlaces] = useState(false)
     const [locationQuery, setLocationQuery] = useState('')
-    const [breakfastResults, setBreakfastResults] = useState([])
+    const [breakfastResults, setBreakfastResults] = useState(cafes)
+
     const placesService = usePlacesService()
     const map = useMap();
     const [ libraries ] = useState(['places']);
@@ -44,8 +46,10 @@ const BreakfastSearch = () => {
 
         if (searchPlaces) {
             placesService?.nearbySearch(request, (results, status) => {
-                console.log(results)
-                setBreakfastResults(results)
+
+                    console.log(results)
+                    setBreakfastResults(results)
+                
             })
         }
         
@@ -74,9 +78,11 @@ const BreakfastSearch = () => {
 
     return (
         <div className="breakfast">
+            <div className="map-with-search">
                 <MapElement breakfastResults={breakfastResults} />
                 <LocationSearch searchValue={locationQuery} onSearch={setLocationQuery} handleSubmit={handleSearch}/>
-                {breakfastResults.slice(0, 5).map(place => <><BreakfastOptionCard place={place} key={place.name} /></>)}
+            </div>
+                {breakfastResults.slice(0, 5).map(place => <><BreakfastOptionCard place={place} key={place.place_id} /></>)}
         </div>
     )
 }
