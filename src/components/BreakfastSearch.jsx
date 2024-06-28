@@ -14,7 +14,7 @@ import { cafes } from '../data/mockCafes'
 const API_KEY = 
 
 const usePlacesService = () => {
-    const map = useMap();
+    const map = useMap('breakfast-map');
     const placesLibrary = useMapsLibrary('places');
     const [placesService, setPlacesService] = useState(null);
   
@@ -32,28 +32,29 @@ const BreakfastSearch = () => {
     const [searchPlaces, setSearchPlaces] = useState(false)
     const [locationQuery, setLocationQuery] = useState('')
     const [breakfastResults, setBreakfastResults] = useState(cafes)
+    const [openCard, setOpenCard] = useState('')
 
     const placesService = usePlacesService()
-    const map = useMap();
+    const map = useMap('breakfast-map');
     const [ libraries ] = useState(['places']);
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: API_KEY,
         libraries: libraries,
     })
 
-    useEffect(() => {
-        if (!placesService) return;
+    // useEffect(() => {
+    //     if (!placesService) return;
 
-        if (searchPlaces) {
-            placesService?.nearbySearch(request, (results, status) => {
+    //     if (searchPlaces) {
+    //         placesService?.nearbySearch(request, (results, status) => {
 
-                    console.log(results)
-                    setBreakfastResults(results)
+    //                 console.log(results)
+    //                 setBreakfastResults(results)
                 
-            })
-        }
+    //         })
+    //     }
         
-    }, [placesService, location])
+    // }, [placesService, location])
 
     const request = {
         keyword: 'Breakfast cafe restaurant',
@@ -76,13 +77,27 @@ const BreakfastSearch = () => {
         console.log(location)
     }
 
+    const handleMarkerClick = (placeId) => {
+        console.log('clicked marker')
+        setOpenCard(placeId)
+        console.log(openCard)
+    }
+
+    const handlePlaceClose = () => {
+        console.log('closing card')
+        setOpenCard('')
+    }
+
     return (
         <div className="breakfast">
             <div className="map-with-search">
-                <MapElement breakfastResults={breakfastResults} />
-                <LocationSearch searchValue={locationQuery} onSearch={setLocationQuery} handleSubmit={handleSearch}/>
+                <MapElement breakfastResults={breakfastResults} handleMarkerClick={handleMarkerClick}/>
+                <LocationSearch searchValue={locationQuery} onSearch={setLocationQuery} handleSubmit={handleSearch} />
+                <div className="breakfast-list">
+                    {breakfastResults.slice(0, 5).map(place => <><BreakfastOptionCard place={place} key={place.place_id} openCard={openCard} handleClose={handlePlaceClose} /></>)}
+                </div>
             </div>
-                {breakfastResults.slice(0, 5).map(place => <><BreakfastOptionCard place={place} key={place.place_id} /></>)}
+                {/* {breakfastResults.slice(0, 5).map(place => <><BreakfastOptionCard place={place} key={place.place_id} openCard={openCard} /></>)} */}
         </div>
     )
 }
