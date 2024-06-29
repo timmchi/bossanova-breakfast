@@ -4,7 +4,7 @@ import {
 import BreakfastMarkers from "./BreakfastMarkers";
 
 const defaultLocation = { lat: 53.54, lng: 10 }
-const mapId = 'eda1d8c59c03d947'
+const mapId = 
 
 const MapElement = ({ breakfastResults, handleMarkerClick }) => {
 

@@ -1,21 +1,31 @@
 import StationList from "./components/StationList";
 import BreakfastSearch from "./components/BreakfastSearch";
+import Hero from "./components/Hero";
 import { 
   APIProvider
 } from '@vis.gl/react-google-maps'
+import { useRef } from "react";
 
 const API_KEY = 
 
 function App() {
+  const stationRef = useRef(null)
+  const breakfastRef = useRef(null)
+
+  const scrollToStationsChoice = () => stationRef.current.scrollIntoView()
+
+  const scrollToBreakfastChoice = () => breakfastRef.current.scrollIntoView()
+
   return (
     <div>
-      <div className="main-text">
-      <h1 className="site-title">Bossa nova breakfast</h1>
-      <h3 className="slogan"><i>Choose your soundtrack, then choose your breakfast</i></h3>
+      <Hero handleScroll={scrollToStationsChoice} />
+      <div ref={stationRef}>
+        <StationList handleBreakfastScroll={scrollToBreakfastChoice} />
       </div>
-      <StationList />
       <APIProvider apiKey={API_KEY}>
-        <BreakfastSearch />
+        <div ref={breakfastRef} className="breakfast-container">
+          <BreakfastSearch />
+        </div>
       </APIProvider>
     </div>
   );

@@ -90,6 +90,10 @@ const BreakfastSearch = () => {
 
     return (
         <div className="breakfast">
+            <div className="section-title">
+                <h3>Input your location, then explore breakfast options</h3>
+                <button onClick={() => console.log('Back to station choice')}>Select a different station</button>
+            </div>
             <div className="map-with-search">
                 <MapElement breakfastResults={breakfastResults} handleMarkerClick={handleMarkerClick}/>
                 <LocationSearch searchValue={locationQuery} onSearch={setLocationQuery} handleSubmit={handleSearch} />
@@ -97,7 +101,6 @@ const BreakfastSearch = () => {
                     {breakfastResults.slice(0, 5).map(place => <><BreakfastOptionCard place={place} key={place.place_id} openCard={openCard} handleClose={handlePlaceClose} /></>)}
                 </div>
             </div>
-                {/* {breakfastResults.slice(0, 5).map(place => <><BreakfastOptionCard place={place} key={place.place_id} openCard={openCard} /></>)} */}
         </div>
     )
 }
