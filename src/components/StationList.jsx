@@ -8,6 +8,7 @@ const StationList = ({ handleBreakfastScroll }) => {
   const [language, setLanguage] = useState(null);
   const [loading, setLoading] = useState(false);
   const stationsRef = useRef(null)
+  const languageRef = useRef(null)
 
   useEffect(() => {
     const setupApi = async () => {
@@ -47,13 +48,19 @@ const StationList = ({ handleBreakfastScroll }) => {
     handleBreakfastScroll()
   }
 
+  const handleBackToLanguageScroll = () => {
+    languageRef.current.scrollIntoView()
+  }
+
   return (
     <div>
-      <LanguageList handleLanguageChoice={handleLanguageChoice} />
+      <div ref={languageRef}>
+          <LanguageList handleLanguageChoice={handleLanguageChoice} />
+      </div>
       <div className="stations-container" ref={stationsRef}>
         <div className="section-title">
             <h3>Choose a radio station</h3>
-            <button onClick={() => console.log('back to languages')}>Back to language selection</button>
+            <button onClick={handleBackToLanguageScroll}>Back to language selection</button>
         </div>
         <div className="stations">
           {!loading ? (<div className="station-list-container">

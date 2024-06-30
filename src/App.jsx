@@ -24,7 +24,7 @@ function App() {
       </div>
       <APIProvider apiKey={API_KEY}>
         <div ref={breakfastRef} className="breakfast-container">
-          <BreakfastSearch />
+          <BreakfastSearch handleScroll={scrollToStationsChoice} />
         </div>
       </APIProvider>
     </div>

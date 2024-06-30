@@ -5,7 +5,7 @@ import {
     useMapsLibrary
 } from '@vis.gl/react-google-maps'
 import { getGeocode, getLatLng } from 'use-places-autocomplete'
-import { useLoadScript, useJsApiLoader } from '@react-google-maps/api'
+import { useJsApiLoader } from '@react-google-maps/api'
 import MapElement from "./Map";
 import BreakfastOptionCard from "./BreakfastOptionCard";
 import LocationSearch from "./LocationSearch";
@@ -27,7 +27,7 @@ const usePlacesService = () => {
     return placesService;
 }
 
-const BreakfastSearch = () => {
+const BreakfastSearch = ( {handleScroll} ) => {
     const [location, setLocation] = useState({ lat: 53.54, lng: 10 })
     const [searchPlaces, setSearchPlaces] = useState(false)
     const [locationQuery, setLocationQuery] = useState('')
@@ -36,11 +36,11 @@ const BreakfastSearch = () => {
 
     const placesService = usePlacesService()
     const map = useMap('breakfast-map');
-    const [ libraries ] = useState(['places']);
-    const { isLoaded } = useJsApiLoader({
-        googleMapsApiKey: API_KEY,
-        libraries: libraries,
-    })
+    // const [ libraries ] = useState(['places']);
+    // const { isLoaded } = useJsApiLoader({
+    //     googleMapsApiKey: API_KEY,
+    //     libraries: libraries,
+    // })
 
     // useEffect(() => {
     //     if (!placesService) return;
@@ -63,7 +63,7 @@ const BreakfastSearch = () => {
         radius: 5000
     }
 
-    if (!isLoaded) return <div>Loading...</div>
+    // if (!isLoaded) return <div>Loading...</div>
 
     const handleSearch = async (e) => {
         e.preventDefault()
@@ -92,7 +92,7 @@ const BreakfastSearch = () => {
         <div className="breakfast">
             <div className="section-title">
                 <h3>Input your location, then explore breakfast options</h3>
-                <button onClick={() => console.log('Back to station choice')}>Select a different station</button>
+                <button onClick={handleScroll}>Select a different station</button>
             </div>
             <div className="map-with-search">
                 <MapElement breakfastResults={breakfastResults} handleMarkerClick={handleMarkerClick}/>
