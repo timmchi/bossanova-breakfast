@@ -11,7 +11,7 @@ import BreakfastOptionCard from "./BreakfastOptionCard";
 import LocationSearch from "./LocationSearch";
 import { cafes } from '../data/mockCafes'
 
-const API_KEY = 
+const API_KEY = 'AIzaSyBkRujkfnEY9WcJtWbG46I275XCzzSzEQ4'
 
 const usePlacesService = () => {
     const map = useMap('breakfast-map');
@@ -92,7 +92,7 @@ const BreakfastSearch = ( {handleScroll} ) => {
         <div className="breakfast">
             <div className="section-title">
                 <h3>Input your location, then explore breakfast options</h3>
-                <button onClick={handleScroll}>Select a different station</button>
+                <button onClick={handleScroll} className="CTA-button">Select a different station</button>
             </div>
             <div className="map-with-search">
                 <MapElement breakfastResults={breakfastResults} handleMarkerClick={handleMarkerClick}/>

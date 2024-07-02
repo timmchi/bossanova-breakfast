@@ -27,7 +27,7 @@ const BreakfastOptionCard = ({ place, openCard, handleClose }) => {
             borderWidth: '3px',
             borderStyle: 'solid',
             borderColor: '#FFE8C8',
-            height: 512,
+            height: 480,
             position: 'relative'
         }}
         >

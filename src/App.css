@@ -23,10 +23,11 @@ body {
     margin-bottom: 0;
 }
 
-.main-text button {
+.CTA-button {
     font-size: 2rem;
+    font-weight: bold;
     padding: 0.5em 1em;
-    margin-top: 1.5em;
+    /* margin-top: 1.5em; */
     margin-left: 1em;
     background-color: rgb(255, 166, 47, 0.7);
     color: #FFE8C8;
@@ -35,6 +36,7 @@ body {
     display: inline-block;
     align-self: center;
 }
+
 .main-text button:hover {
     background-color: rgb(255, 166, 47, 1);
 }
@@ -57,6 +59,7 @@ body {
 
 .language-list button {
     font-size: 1rem;
+    font-weight: bold;
     padding: 0.5em;
     margin-left: 1em;
     background-color: rgb(255, 166, 47, 0.7);
@@ -147,15 +150,12 @@ body {
 }
 
 .map-div {
-    height: 75vh;
+    height: 70vh;
     width: 100%;
     max-width: 85%;
     margin-top: 3em;
     margin-left: auto;
     margin-right: auto;
-    /* border-width: 0.5em;
-    border-style: solid;
-    border-color: rgba(172,215,147,0.7); */
     position: relative;
 }
 
@@ -192,25 +192,63 @@ body {
 }
 
 .breakfast-container {
-    margin-top: 10em;
+    margin-top: 15em;
     padding-bottom: 3em;
     height: 100vh;
     background-color: rgba(172,215,147);
     color: white;
 }
 
-.breakfast {
-    padding-top: 1em;
-}
-
 .section-title {
-    font-size: 1.5rem;
+    padding-top: 1em;
+    font-size: 1.8rem;
+    font-weight: bold;
     text-align: center;
     text-shadow: 3px 4px 2px rgba(255, 166, 47, 1);
 }
 
 .section-title button {
     font-size: 1.3rem;
+}
+
+.radio-title {
+    color: white;
+    text-shadow: 3px 4px 2px rgba(172,215,147, 1);
+}
+
+.select-station-button {
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 0.5em;
+    background-color: rgb(255, 166, 47, 0.7);
+    color: #FFE8C8;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.select-station-button:hover {
+    background-color: rgb(255, 166, 47, 1);
+}
+
+.selected-player-container {
+    position: sticky;
+    top: 0;
+}
+
+.selected-player {
+    font-weight: bold;
+    max-width: 12em;
+    border-width: 3px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: rgba(172,215,147);
+    padding: 0.5em;
+    opacity: 0.5;
+    color: white;
+    margin: 0.5em;
+}
+.selected-player:hover {
+    opacity: 1;
 }
 
 @media screen and (max-width: 768px) {

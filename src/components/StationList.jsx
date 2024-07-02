@@ -1,10 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { RadioBrowserApi } from "radio-browser-api";
 import Player from "./Player";
+import SelectStationButton from "./SelectStationButton";
 import LanguageList from "./LanguageList";
+import SelectedPlayer from "./SelectedPlayer";
 
 const StationList = ({ handleBreakfastScroll }) => {
   const [stations, setStations] = useState(null);
+  const [chosenStationId, setChosenStationId] = useState(null)
   const [language, setLanguage] = useState(null);
   const [loading, setLoading] = useState(false);
   const stationsRef = useRef(null)
@@ -45,6 +48,7 @@ const StationList = ({ handleBreakfastScroll }) => {
 
   const handleStationChoice = (id) => {
     console.log('Station chosen', id)
+    setChosenStationId(id)
     handleBreakfastScroll()
   }
 
@@ -58,16 +62,16 @@ const StationList = ({ handleBreakfastScroll }) => {
           <LanguageList handleLanguageChoice={handleLanguageChoice} />
       </div>
       <div className="stations-container" ref={stationsRef}>
-        <div className="section-title">
+        <div className="section-title radio-title">
             <h3>Choose a radio station</h3>
-            <button onClick={handleBackToLanguageScroll}>Back to language selection</button>
+            <button onClick={handleBackToLanguageScroll} className="CTA-button">Back to language selection</button>
         </div>
         <div className="stations">
           {!loading ? (<div className="station-list-container">
             {stations &&
               stations.map((station) => (
                 <div className="station-player" key={station?.id}>
-                    <button onClick={() => handleStationChoice(station?.id)}>Select station</button>
+                    <SelectStationButton handleStationChoice={() => handleStationChoice(station?.id)} handleStationUnselect={() => setChosenStationId(null)} chosen={chosenStationId === station?.id} />
                     <div className="station-info">
                       <img className="station-logo" alt="station logo" src={station.favicon ? station.favicon : 'https://png.pngtree.com/template/20190323/ourmid/pngtree-coffee-logo-design-image_82183.jpg'} width="60" height="60" />
                       <p className="station-name">{station?.name}</p>
@@ -78,7 +82,8 @@ const StationList = ({ handleBreakfastScroll }) => {
           </div>) : <div className="fetching-div">Fetching stations...</div>}
         </div>
       </div>
-    </div>
+          <SelectedPlayer selectedStation={stations?.find(station => station.id === chosenStationId)} />
+      </div>
   );
 };
 
