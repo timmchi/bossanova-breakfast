@@ -161,24 +161,36 @@ body {
 
 .location-search-container {
     position: absolute;
-    top: 15%;
-    left: 45%;
+    top: 13%;
+    right: 0;
     transform: translateX(-50%);
 }
 
 .location-search-input {
-    padding: 0.6em 2em 0.6em 0.5em;
+    padding: 1em 2em 1em 1em;
     border-radius: 5px;
     margin-left: 5em;
+    border-color: rgb(255, 166, 47, 0.6);
+    border-style: solid;
+    outline: none;
+    box-shadow: none;
 }
+.location-search-input:hover {
+    border-color: rgb(255, 166, 47, 1);
+}
+.location-search-input:active :hover{
+    border-color: rgb(255, 166, 47, 1);
+}
+
 
 .location-search-container button {
     position: absolute;
-    top: 0.3em;
-    right: 0.2em;
+    top: 0.7em;
+    right: 0.6em;
     background-color: transparent;
     border: none;
     cursor: pointer;
+    color: grey;
 }
 
 .breakfast-list {
@@ -229,11 +241,6 @@ body {
     background-color: rgb(255, 166, 47, 1);
 }
 
-.selected-player-container {
-    position: sticky;
-    top: 0;
-}
-
 .selected-player {
     font-weight: bold;
     max-width: 12em;
@@ -246,9 +253,23 @@ body {
     opacity: 0.5;
     color: white;
     margin: 0.5em;
+    position: fixed;
+    z-index: 10;
+    bottom: 0;
+    right: 0;
 }
 .selected-player:hover {
     opacity: 1;
+}
+
+.language-station-container {
+    padding-bottom: 5em;
+}
+
+.fetching-text {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 768px) {
@@ -263,5 +284,13 @@ body {
 
     .breakfast-container {
         margin-top: 95em;
+    }
+
+    .location-search-container {
+        left: 36%;
+    }
+
+    .location-search-container button  {
+        left: 100%;
     }
 }

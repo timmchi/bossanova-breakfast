@@ -4,6 +4,7 @@ import Player from "./Player";
 import SelectStationButton from "./SelectStationButton";
 import LanguageList from "./LanguageList";
 import SelectedPlayer from "./SelectedPlayer";
+import FetchingComponent from "./FetchingComponent";
 
 const StationList = ({ handleBreakfastScroll }) => {
   const [stations, setStations] = useState(null);
@@ -57,7 +58,8 @@ const StationList = ({ handleBreakfastScroll }) => {
   }
 
   return (
-    <div>
+    <div className="language-station-container">
+      {/* <FetchingComponent elementName={'stations'} bgColor={'orange'} /> */}
       <div ref={languageRef}>
           <LanguageList handleLanguageChoice={handleLanguageChoice} />
       </div>
@@ -79,11 +81,11 @@ const StationList = ({ handleBreakfastScroll }) => {
                   <Player station={station} />
                 </div>
               ))}
-          </div>) : <div className="fetching-div">Fetching stations...</div>}
+          </div>) : <FetchingComponent elementName={'stations'} bgColor={"orange"} />}
         </div>
       </div>
-          <SelectedPlayer selectedStation={stations?.find(station => station.id === chosenStationId)} />
-      </div>
+      <SelectedPlayer selectedStation={stations?.find(station => station.id === chosenStationId)} />
+    </div>
   );
 };
 

@@ -11,7 +11,7 @@ import BreakfastOptionCard from "./BreakfastOptionCard";
 import LocationSearch from "./LocationSearch";
 import { cafes } from '../data/mockCafes'
 
-const API_KEY = 'AIzaSyBkRujkfnEY9WcJtWbG46I275XCzzSzEQ4'
+const API_KEY = ;
 
 const usePlacesService = () => {
     const map = useMap('breakfast-map');
@@ -32,6 +32,7 @@ const BreakfastSearch = ( {handleScroll} ) => {
     const [searchPlaces, setSearchPlaces] = useState(false)
     const [locationQuery, setLocationQuery] = useState('')
     const [breakfastResults, setBreakfastResults] = useState(cafes)
+    const [resultsPage, setResultsPage] = useState(1)
     const [openCard, setOpenCard] = useState('')
 
     const placesService = usePlacesService()
@@ -68,6 +69,7 @@ const BreakfastSearch = ( {handleScroll} ) => {
     const handleSearch = async (e) => {
         e.preventDefault()
         const results = await getGeocode({ address: locationQuery })
+        setLocationQuery('')
         const { lat, lng } = getLatLng(results[0])
         console.log('coords', { lat, lng })
         console.log(location)
@@ -88,17 +90,36 @@ const BreakfastSearch = ( {handleScroll} ) => {
         setOpenCard('')
     }
 
+    const resultsSlicer = (pageIndex, breakfastResults) => {
+        switch (pageIndex) {
+            case 1:
+                return breakfastResults.slice(0, 5)
+            case 2:
+                return breakfastResults.slice(5, 10)
+            case 3:
+                return breakfastResults.slice(10, 15)
+            case 4:
+                return breakfastResults.slice(15, 20)
+            default:
+                return breakfastResults.slice(0, 5)
+        }
+    }
+
     return (
         <div className="breakfast">
             <div className="section-title">
                 <h3>Input your location, then explore breakfast options</h3>
                 <button onClick={handleScroll} className="CTA-button">Select a different station</button>
             </div>
+            <button onClick={() => setResultsPage(1)}>1</button>
+            <button onClick={() => setResultsPage(2)}>2</button>
+            <button onClick={() => setResultsPage(3)}>3</button>
+            <button onClick={() => setResultsPage(4)}>4</button>
             <div className="map-with-search">
-                <MapElement breakfastResults={breakfastResults} handleMarkerClick={handleMarkerClick}/>
+                <MapElement breakfastResults={resultsSlicer(resultsPage, breakfastResults)} handleMarkerClick={handleMarkerClick}/>
                 <LocationSearch searchValue={locationQuery} onSearch={setLocationQuery} handleSubmit={handleSearch} />
                 <div className="breakfast-list">
-                    {breakfastResults.slice(0, 5).map(place => <><BreakfastOptionCard place={place} key={place.place_id} openCard={openCard} handleClose={handlePlaceClose} /></>)}
+                    {resultsSlicer(resultsPage, breakfastResults).map(place => <><BreakfastOptionCard place={place} key={place.place_id} openCard={openCard} handleClose={handlePlaceClose} /></>)}
                 </div>
             </div>
         </div>
