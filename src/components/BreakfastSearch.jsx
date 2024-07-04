@@ -9,9 +9,10 @@ import { useJsApiLoader } from '@react-google-maps/api'
 import MapElement from "./Map";
 import BreakfastOptionCard from "./BreakfastOptionCard";
 import LocationSearch from "./LocationSearch";
+import PaginationElement from "./Pagination";
 import { cafes } from '../data/mockCafes'
 
-const API_KEY = ;
+const API_KEY = 'AIzaSyBkRujkfnEY9WcJtWbG46I275XCzzSzEQ4';
 
 const usePlacesService = () => {
     const map = useMap('breakfast-map');
@@ -72,11 +73,11 @@ const BreakfastSearch = ( {handleScroll} ) => {
         setLocationQuery('')
         const { lat, lng } = getLatLng(results[0])
         console.log('coords', { lat, lng })
-        console.log(location)
+        // console.log(location)
         setLocation({ lat, lng })
         setSearchPlaces(true)
         map.setCenter({ lat, lng })
-        console.log(location)
+        // console.log(location)
     }
 
     const handleMarkerClick = (placeId) => {
@@ -105,16 +106,17 @@ const BreakfastSearch = ( {handleScroll} ) => {
         }
     }
 
+    const handlePageChange = (e, value) => {
+        setResultsPage(value)
+    }
+
     return (
         <div className="breakfast">
             <div className="section-title">
                 <h3>Input your location, then explore breakfast options</h3>
                 <button onClick={handleScroll} className="CTA-button">Select a different station</button>
             </div>
-            <button onClick={() => setResultsPage(1)}>1</button>
-            <button onClick={() => setResultsPage(2)}>2</button>
-            <button onClick={() => setResultsPage(3)}>3</button>
-            <button onClick={() => setResultsPage(4)}>4</button>
+            {searchPlaces && <PaginationElement page={resultsPage} handlePageChange={handlePageChange} />}
             <div className="map-with-search">
                 <MapElement breakfastResults={resultsSlicer(resultsPage, breakfastResults)} handleMarkerClick={handleMarkerClick}/>
                 <LocationSearch searchValue={locationQuery} onSearch={setLocationQuery} handleSubmit={handleSearch} />

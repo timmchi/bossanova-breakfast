@@ -150,13 +150,18 @@ body {
 }
 
 .map-div {
-    height: 70vh;
+    height: 75vh;
     width: 100%;
     max-width: 85%;
-    margin-top: 3em;
+    margin-top: 2.5em;
     margin-left: auto;
     margin-right: auto;
     position: relative;
+    border-width: 3px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.75);
 }
 
 .location-search-container {
@@ -195,7 +200,7 @@ body {
 
 .breakfast-list {
     position: absolute;
-    top: 7.7%;
+    top: 7%;
     left: 7.5%;
 }
 
@@ -205,7 +210,7 @@ body {
 
 .breakfast-container {
     margin-top: 15em;
-    padding-bottom: 3em;
+    padding-bottom: 10em;
     height: 100vh;
     background-color: rgba(172,215,147);
     color: white;
@@ -272,6 +277,12 @@ body {
     font-weight: bold;
 }
 
+.station-skeletons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 @media screen and (max-width: 768px) {
     .station-list-container {
         grid-template-columns: 1fr;
@@ -280,10 +291,11 @@ body {
 
     .breakfast-list {
         left: 7%;
+        top: 70%;
     }
 
     .breakfast-container {
-        margin-top: 95em;
+        margin-top: 105em;
     }
 
     .location-search-container {
@@ -292,5 +304,16 @@ body {
 
     .location-search-container button  {
         left: 100%;
+    }
+
+    .station-skeletons {
+        flex-direction: column;
+        justify-content: center;
+        margin-right: 2.5em;
+        margin-top: 1.5em;
+    }
+
+    .station-player {
+        max-width: 300px;
     }
 }
