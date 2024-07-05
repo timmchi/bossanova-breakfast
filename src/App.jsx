@@ -8,7 +8,7 @@ import {
 } from '@vis.gl/react-google-maps'
 import { useRef } from "react";
 
-const API_KEY = 'AIzaSyBkRujkfnEY9WcJtWbG46I275XCzzSzEQ4'
+const API_KEY = ;
 
 function App() {
   const stationRef = useRef(null)

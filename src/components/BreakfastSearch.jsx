@@ -10,23 +10,10 @@ import MapElement from "./Map";
 import BreakfastOptionCard from "./BreakfastOptionCard";
 import LocationSearch from "./LocationSearch";
 import PaginationElement from "./Pagination";
+import usePlacesService from "../hooks/usePlacesService";
 import { cafes } from '../data/mockCafes'
 
-const API_KEY = 'AIzaSyBkRujkfnEY9WcJtWbG46I275XCzzSzEQ4';
-
-const usePlacesService = () => {
-    const map = useMap('breakfast-map');
-    const placesLibrary = useMapsLibrary('places');
-    const [placesService, setPlacesService] = useState(null);
-  
-    useEffect(() => {
-      if (!placesLibrary || !map) return;
-  
-      setPlacesService(new placesLibrary.PlacesService(map));
-    }, [placesLibrary, map]);
-  
-    return placesService;
-}
+const API_KEY = ;
 
 const BreakfastSearch = ( {handleScroll} ) => {
     const [location, setLocation] = useState({ lat: 53.54, lng: 10 })
@@ -36,8 +23,7 @@ const BreakfastSearch = ( {handleScroll} ) => {
     const [resultsPage, setResultsPage] = useState(1)
     const [openCard, setOpenCard] = useState('')
 
-    const placesService = usePlacesService()
-    const map = useMap('breakfast-map');
+    const { map, placesService } = usePlacesService()
     // const [ libraries ] = useState(['places']);
     // const { isLoaded } = useJsApiLoader({
     //     googleMapsApiKey: API_KEY,

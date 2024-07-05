@@ -1,46 +1,20 @@
-import { useState, useEffect, useRef } from "react";
-import { RadioBrowserApi } from "radio-browser-api";
+import { useState, useRef } from "react";
 import Player from "./Player";
 import SelectStationButton from "./SelectStationButton";
 import LanguageList from "./LanguageList";
 import SelectedPlayer from "./SelectedPlayer";
 import FetchingComponent from "./FetchingComponent";
+import useStations from "../hooks/useStations";
 
 const StationList = ({ handleBreakfastScroll }) => {
-  const [stations, setStations] = useState(null);
   const [chosenStationId, setChosenStationId] = useState(null)
   const [language, setLanguage] = useState(null);
-  const [loading, setLoading] = useState(false);
   const stationsRef = useRef(null)
   const languageRef = useRef(null)
 
-  useEffect(() => {
-    const setupApi = async () => {
-        const api = new RadioBrowserApi(fetch.bind(window), "Bossa nova breakfast");
-    
-        if (language) {
-          try {
-            setLoading(true)
-
-            const stations = await api.searchStations({
-            language: language,
-            tag: "bossa nova",
-            limit: 30,
-          });
-      
-          setStations(stations)
-        } catch (err) {
-          console.error('Error fetching stations', err)
-        } finally {
-          setLoading(false)
-        }
-      }
-      };
-
-    setupApi();
-    
-  }, [language]);
-
+  const { isPending, data } = useStations(language)
+  const stations = data;
+  
   const handleLanguageChoice = (language) => {
     console.log('Language chosen:', language)
     setLanguage(language)
@@ -69,7 +43,7 @@ const StationList = ({ handleBreakfastScroll }) => {
             <button onClick={handleBackToLanguageScroll} className="CTA-button">Back to language selection</button>
         </div>
         <div className="stations">
-          {!loading ? (<div className="station-list-container">
+          {!isPending ? (<div className="station-list-container">
             {stations &&
               stations.map((station) => (
                 <div className="station-player" key={station?.id}>
