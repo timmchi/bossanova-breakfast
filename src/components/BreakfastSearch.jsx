@@ -1,11 +1,5 @@
-import { useEffect, useState } from "react";
-import { 
-    APIProvider,
-    useMap,
-    useMapsLibrary
-} from '@vis.gl/react-google-maps'
+import { useState } from "react";
 import { getGeocode, getLatLng } from 'use-places-autocomplete'
-import { useJsApiLoader } from '@react-google-maps/api'
 import MapElement from "./Map";
 import BreakfastOptionCard from "./BreakfastOptionCard";
 import LocationSearch from "./LocationSearch";
@@ -13,7 +7,7 @@ import PaginationElement from "./Pagination";
 import usePlacesService from "../hooks/usePlacesService";
 import { cafes } from '../data/mockCafes'
 
-const API_KEY = ;
+// TODO - fix rerendering on every key press when searching for a place
 
 const BreakfastSearch = ( {handleScroll} ) => {
     const [location, setLocation] = useState({ lat: 53.54, lng: 10 })
@@ -23,35 +17,8 @@ const BreakfastSearch = ( {handleScroll} ) => {
     const [resultsPage, setResultsPage] = useState(1)
     const [openCard, setOpenCard] = useState('')
 
-    const { map, placesService } = usePlacesService()
-    // const [ libraries ] = useState(['places']);
-    // const { isLoaded } = useJsApiLoader({
-    //     googleMapsApiKey: API_KEY,
-    //     libraries: libraries,
-    // })
-
-    // useEffect(() => {
-    //     if (!placesService) return;
-
-    //     if (searchPlaces) {
-    //         placesService?.nearbySearch(request, (results, status) => {
-
-    //                 console.log(results)
-    //                 setBreakfastResults(results)
-                
-    //         })
-    //     }
-        
-    // }, [placesService, location])
-
-    const request = {
-        keyword: 'Breakfast cafe restaurant',
-        location: location,
-        openNow: true,
-        radius: 5000
-    }
-
-    // if (!isLoaded) return <div>Loading...</div>
+    // const { map, fetchedResults } = usePlacesService(location, searchPlaces)
+    const { map } = usePlacesService(location, searchPlaces)
 
     const handleSearch = async (e) => {
         e.preventDefault()
@@ -63,7 +30,6 @@ const BreakfastSearch = ( {handleScroll} ) => {
         setLocation({ lat, lng })
         setSearchPlaces(true)
         map.setCenter({ lat, lng })
-        // console.log(location)
     }
 
     const handleMarkerClick = (placeId) => {
@@ -95,6 +61,7 @@ const BreakfastSearch = ( {handleScroll} ) => {
     const handlePageChange = (e, value) => {
         setResultsPage(value)
     }
+
 
     return (
         <div className="breakfast">

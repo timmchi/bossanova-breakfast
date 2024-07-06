@@ -11,7 +11,6 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-
 const BreakfastOptionCard = ({ place, openCard, handleClose }) => {
 
     const matches = useMediaQuery('(max-width:768px)');

@@ -1,8 +1,6 @@
 import StationList from "./components/StationList";
 import BreakfastSearch from "./components/BreakfastSearch";
 import Hero from "./components/Hero";
-import RadioSkeleton from "./components/RadioSkeleton";
-import FetchingComponent from "./components/FetchingComponent";
 import { 
   APIProvider
 } from '@vis.gl/react-google-maps'
@@ -21,7 +19,6 @@ function App() {
   return (
     <div>
       <Hero handleScroll={scrollToStationsChoice} />
-      {/* <FetchingComponent elementName="stations" bgColor="orange" /> */}
       <div ref={stationRef}>
         <StationList handleBreakfastScroll={scrollToBreakfastChoice} />
       </div>

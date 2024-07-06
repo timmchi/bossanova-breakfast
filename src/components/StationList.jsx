@@ -33,7 +33,6 @@ const StationList = ({ handleBreakfastScroll }) => {
 
   return (
     <div className="language-station-container">
-      {/* <FetchingComponent elementName={'stations'} bgColor={'orange'} /> */}
       <div ref={languageRef}>
           <LanguageList handleLanguageChoice={handleLanguageChoice} />
       </div>
