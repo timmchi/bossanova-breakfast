@@ -2,7 +2,6 @@ import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 
 const Player = ({ station, autoplayEnabled }) => {
-
   return (
     <AudioPlayer
       src={station.urlResolved}
@@ -11,7 +10,7 @@ const Player = ({ station, autoplayEnabled }) => {
       autoPlay={autoplayEnabled}
       volume={0.3}
       customProgressBarSection={[]}
-      customControlsSection={['MAIN_CONTROLS', 'VOLUME_CONTROLS']}
+      customControlsSection={["MAIN_CONTROLS", "VOLUME_CONTROLS"]}
       onPlay={(e) => console.log("playing song")}
       autoPlayAfterSrcChange={false}
     />
