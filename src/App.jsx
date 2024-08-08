@@ -1,20 +1,16 @@
 import StationList from "./components/StationList";
 import BreakfastSearch from "./components/BreakfastSearch";
 import Hero from "./components/Hero";
-import { 
-  APIProvider
-} from '@vis.gl/react-google-maps'
+import { APIProvider } from "@vis.gl/react-google-maps";
 import { useRef } from "react";
 
-const API_KEY = ;
-
 function App() {
-  const stationRef = useRef(null)
-  const breakfastRef = useRef(null)
+  const stationRef = useRef(null);
+  const breakfastRef = useRef(null);
 
-  const scrollToStationsChoice = () => stationRef.current.scrollIntoView()
+  const scrollToStationsChoice = () => stationRef.current.scrollIntoView();
 
-  const scrollToBreakfastChoice = () => breakfastRef.current.scrollIntoView()
+  const scrollToBreakfastChoice = () => breakfastRef.current.scrollIntoView();
 
   return (
     <div>

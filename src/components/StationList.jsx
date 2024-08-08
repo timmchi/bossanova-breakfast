@@ -12,7 +12,8 @@ const StationList = ({ handleBreakfastScroll }) => {
   const stationsRef = useRef(null);
   const languageRef = useRef(null);
 
-  const { isPending, data } = useStations(language);
+  const { isLoading, data } = useStations(language);
+  console.log(isLoading);
   const stations = data;
 
   const handleLanguageChoice = (language) => {
@@ -44,7 +45,7 @@ const StationList = ({ handleBreakfastScroll }) => {
           </button>
         </div>
         <div className="stations">
-          {!isPending ? (
+          {!isLoading ? (
             <div className="station-list-container">
               {stations &&
                 stations.map((station) => (

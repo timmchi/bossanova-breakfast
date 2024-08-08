@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { RadioBrowserApi } from "radio-browser-api";
 
 const useStations = (language) => {
-  const { isPending, data } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ["stations", language],
     queryFn: async () => {
       if (!language) return;
@@ -29,7 +29,7 @@ const useStations = (language) => {
   });
 
   console.log(data);
-  return { data, isPending };
+  return { data, isLoading };
 };
 
 export default useStations;

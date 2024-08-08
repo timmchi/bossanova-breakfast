@@ -9,7 +9,7 @@ const PaginationElement = ({ page, handlePageChange }) => {
       page={page}
       onChange={handlePageChange}
       sx={{
-        paddingTop: "2.5em",
+        paddingTop: "2em",
         paddingLeft: "1.5em",
         button: { color: "white" },
       }}
