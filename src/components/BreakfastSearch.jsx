@@ -22,11 +22,13 @@ const BreakfastSearch = ({ handleScroll }) => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
+
+    if (locationQuery.trim() === "") return;
+
     const results = await getGeocode({ address: locationQuery });
     setLocationQuery("");
     const { lat, lng } = getLatLng(results[0]);
     console.log("coords", { lat, lng });
-    // console.log(location)
     setLocation({ lat, lng });
     setSearchPlaces(true);
     map.setCenter({ lat, lng });

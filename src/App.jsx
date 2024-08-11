@@ -4,6 +4,8 @@ import Hero from "./components/Hero";
 import { APIProvider } from "@vis.gl/react-google-maps";
 import { useRef } from "react";
 
+const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+
 function App() {
   const stationRef = useRef(null);
   const breakfastRef = useRef(null);
